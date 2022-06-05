@@ -6,10 +6,16 @@ public class Branchpoint
   public Branchpoint death;
   public String name;
   public int percentChance;
+  String fileName= "";
   
   public Branchpoint(String n, Dialogue[] d)
   {
     dialogue = d;
+    name = n;
+  }
+  public Branchpoint(String n, String d)
+  {
+    fileName = d;
     name = n;
   }
   public Branchpoint(String na, Dialogue[] d, Branchpoint[] n)
@@ -25,6 +31,37 @@ public class Branchpoint
     percentChance = p;
     name = na;
     death = de;
+  }
+  
+  public Branchpoint(String na, String d, Branchpoint[] n)
+  {
+    fileName = d;
+    next = n;
+    name = na;
+  }
+  public Branchpoint(String na, String d, Branchpoint[] n, int p, Branchpoint de)
+  {
+    fileName = d;
+    next = n;
+    percentChance = p;
+    name = na;
+    death = de;
+  }
+  
+  public void Init()
+  {
+    
+    if(fileName.equals(""))
+      return;    
+      
+    String[] lines = loadStrings(fileName);
+    dialogue = new Dialogue[lines.length];
+    for(int i = 0; i < lines.length; i++)
+    {
+      String[] c = lines[i].split("/");
+      
+      dialogue[i] = new Dialogue(new Char(c[0]), c[1]);
+    }
   }
 }
 

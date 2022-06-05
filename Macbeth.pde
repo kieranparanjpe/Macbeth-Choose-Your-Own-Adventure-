@@ -2,17 +2,24 @@
 /*Characters*/
 public Char narrator = new Char("Narrator");
 public final Char macbeth = new Char("Macbeth");
+public final Char witches = new Char("Witches");
+public final Char duncan = new Char("Duncan");
+public final Char ross = new Char("Ross");
 
 /*Dialogue*/
-public final Dialogue a1b1d1 = new Dialogue(narrator, "a1b1d1.txt", true);
-public final Dialogue a1b1d2 = new Dialogue(macbeth, "This is next");
+public final Dialogue b1d1 = new Dialogue(narrator, "b1d1.txt", true);
 
 /*Branchpoints*/
 
-public final Branchpoint b10 = new Branchpoint("Kill Witches", new Dialogue[] {a1b1d2});
-public final Branchpoint b1 = new Branchpoint("Kill Witches", new Dialogue[] {a1b1d1, a1b1d2});
-public final Branchpoint b2 = new Branchpoint("third", new Dialogue[] {a1b1d1, a1b1d2}, new Branchpoint[] {b1}, 1, b10);
-public final Branchpoint b0 = new Branchpoint("Start", new Dialogue[] {a1b1d1, a1b1d2}, new Branchpoint[] {b2, b1});
+//public final Branchpoint b10 = new Branchpoint("Kill Witches", new Dialogue[] {a1b1d2});
+public final Branchpoint b7 = new Branchpoint("Support The Murder", "b7.txt");
+public final Branchpoint b6 = new Branchpoint("Don't Support The Murder", "b6.txt");
+public final Branchpoint b5 = new Branchpoint("Kill Duncan", "b5.txt", 75, b9);
+public final Branchpoint b4 = new Branchpoint("Don't Kill Duncan", "b4.txt");
+public final Branchpoint b3 = new Branchpoint("Believe Witches", "b3.txt", new Branchpoint[] {b4, b5});
+public final Branchpoint b2 = new Branchpoint("Don't Believe Witches", "b2.txt", new Branchpoint[] {b6, b7});
+public final Branchpoint b1 = new Branchpoint("Kill Witches", "b1.txt");
+public final Branchpoint b0 = new Branchpoint("Start", "b0.txt", new Branchpoint[] {b1, b2, b3});
 
 
 public Branchpoint currentBranch;
@@ -38,6 +45,7 @@ private void InitD(Branchpoint current)
  {
     current.dialogue[i].Init();
  }
+ current.Init();
  if(current.death != null)
    InitD(current.death);
  
@@ -109,7 +117,7 @@ public void draw()
           {
             pos[0] = width/2 - 450;
             pos[1] = width/2;
-            pos[2] = width/2 - 450;
+            pos[2] = width/2 + 450;
           }
           for(int i = 0; i < currentBranch.next.length; i++)
           {
@@ -144,7 +152,7 @@ public Boolean DisplayText(String text)
   }
 
 
-  if (millis() - millis < 30)
+  if (millis() - millis < 1)
   {
     text(currentText, width/2, height/2 + 75, 800, 500);
     return false;
