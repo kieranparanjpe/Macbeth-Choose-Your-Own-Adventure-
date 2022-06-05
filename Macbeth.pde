@@ -4,14 +4,15 @@ public Char narrator = new Char("Narrator");
 public final Char macbeth = new Char("Macbeth");
 
 /*Dialogue*/
-public final Dialogue a1b1d1 = new Dialogue(narrator, "Sample Introcfcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
-public final Dialogue a1b1d2 = new Dialogue(narrator, "This is next");
+public final Dialogue a1b1d1 = new Dialogue(narrator, "a1b1d1.txt", true);
+public final Dialogue a1b1d2 = new Dialogue(macbeth, "This is next");
 
 /*Branchpoints*/
 
-public final Branchpoint third = new Branchpoint("third", new Dialogue[] {a1b1d1, a1b1d2});
-public final Branchpoint second = new Branchpoint("second", new Dialogue[] {a1b1d1, a1b1d2});
-public final Branchpoint first = new Branchpoint("Start", new Dialogue[] {a1b1d1, a1b1d2}, new Branchpoint[] {second, third});
+public final Branchpoint b10 = new Branchpoint("Kill Witches", new Dialogue[] {a1b1d2});
+public final Branchpoint b1 = new Branchpoint("Kill Witches", new Dialogue[] {a1b1d1, a1b1d2});
+public final Branchpoint b2 = new Branchpoint("third", new Dialogue[] {a1b1d1, a1b1d2}, new Branchpoint[] {b1}, 1, b10);
+public final Branchpoint b0 = new Branchpoint("Start", new Dialogue[] {a1b1d1, a1b1d2}, new Branchpoint[] {b2, b1});
 
 
 public Branchpoint currentBranch;
@@ -27,8 +28,23 @@ public void setup()
   size(1280, 720);
   rectMode(CENTER);
   textAlign(LEFT);
-  currentBranch = first;
-  
+  currentBranch = b0;
+  InitD(b0);
+}
+
+private void InitD(Branchpoint current)
+{
+ for(int i = 0; i < current.dialogue.length; i++)
+ {
+    current.dialogue[i].Init();
+ }
+ if(current.death != null)
+   InitD(current.death);
+ 
+ for(Branchpoint b : current.next)
+ {
+  InitD(b); 
+ }
 }
 
 public void draw()
@@ -43,7 +59,25 @@ public void draw()
      buttons.get(i).Draw();
      if(buttons.get(i).clicked)
      {
-       currentBranch = currentBranch.next[i];
+       int pc = currentBranch.next[i].percentChance;
+       if(pc != 0)
+       {
+         float r = random(0, 100);
+         if(r <= pc)
+         {
+            currentBranch = currentBranch.next[i];
+         }
+         else
+         {
+             currentBranch = currentBranch.next[i].death;
+             println("sofhs");
+         }
+       }
+       else
+       {
+           currentBranch = currentBranch.next[i];
+       }
+      
        buttons = new ArrayList<Button>();
        currentDialogue = 0;
        currentText = "";
@@ -79,7 +113,7 @@ public void draw()
           }
           for(int i = 0; i < currentBranch.next.length; i++)
           {
-             buttons.add(new Button(new PVector(pos[i], height * 0.75), new PVector(300, 200), 255, 200, currentBranch.next[i].name));
+             buttons.add(new Button(new PVector(pos[i], height * 0.75), new PVector(300, 200), 255, 200, currentBranch.next[i].name + (currentBranch.next[i].percentChance == 0 ? "" : " (" + currentBranch.next[i].percentChance + ")")));
           }
         }
         else
@@ -116,8 +150,6 @@ public Boolean DisplayText(String text)
     return false;
   }
 
-  println(text);
-  println(currentText);
   millis = millis();
   int l = currentText.length();
 
