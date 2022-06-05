@@ -4,21 +4,25 @@ public class Branchpoint
   public Dialogue[] dialogue = new Dialogue[0]; 
   
   public String minigame = "";
+  public String name;
   
-  public Branchpoint(Dialogue[] d)
+  public Branchpoint(String n, Dialogue[] d)
   {
     dialogue = d;
+    name = n;
   }
-  public Branchpoint(Dialogue[] d, Branchpoint[] n)
+  public Branchpoint(String na, Dialogue[] d, Branchpoint[] n)
   {
     dialogue = d;
     next = n;
+    name = na;
   }
-  public Branchpoint(Dialogue[] d, Branchpoint[] n, String m)
+  public Branchpoint(String na, Dialogue[] d, Branchpoint[] n, String m)
   {
     dialogue = d;
     next = n;
     minigame = m;
+    name = na;
   }
 }
 
