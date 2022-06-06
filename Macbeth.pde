@@ -12,6 +12,7 @@ public final Dialogue b1d1 = new Dialogue(narrator, "b1d1.txt", true);
 /*Branchpoints*/
 
 //public final Branchpoint b10 = new Branchpoint("Kill Witches", new Dialogue[] {a1b1d2});
+public final Branchpoint b9 = new Branchpoint("Fail to murder", "b9.txt");
 public final Branchpoint b7 = new Branchpoint("Support The Murder", "b7.txt");
 public final Branchpoint b6 = new Branchpoint("Don't Support The Murder", "b6.txt");
 public final Branchpoint b5 = new Branchpoint("Kill Duncan", "b5.txt", 75, b9);
