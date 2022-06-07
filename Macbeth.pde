@@ -15,7 +15,7 @@ public final Dialogue b1d1 = new Dialogue(narrator, "b1d1.txt", true);
 public final Branchpoint b9 = new Branchpoint("Fail to murder", "b9.txt");
 public final Branchpoint b7 = new Branchpoint("Support The Murder", "b7.txt");
 public final Branchpoint b6 = new Branchpoint("Don't Support The Murder", "b6.txt");
-public final Branchpoint b5 = new Branchpoint("Kill Duncan", "b5.txt", 75, b9);
+public final Branchpoint b5 = new Branchpoint("Kill Duncan", "b5.txt");
 public final Branchpoint b4 = new Branchpoint("Don't Kill Duncan", "b4.txt");
 public final Branchpoint b3 = new Branchpoint("Believe Witches", "b3.txt", new Branchpoint[] {b4, b5});
 public final Branchpoint b2 = new Branchpoint("Don't Believe Witches", "b2.txt", new Branchpoint[] {b6, b7});
@@ -96,8 +96,17 @@ public void draw()
 
   if (currentDialogue >= currentBranch.dialogue.length)
   {
-    //if (currentBranch.next.length == 0)
-      //currentBranch = null;
+    textAlign(LEFT);
+
+  fill(255);
+    textSize(40);
+
+   text(currentBranch.dialogue[currentDialogue - 1].character.name + ":", width/2, height/2 , 800, 500);
+
+  textSize(20);
+  
+      text(currentBranch.dialogue[currentDialogue - 1].text, width/2, height/2 + 75, 800, 500);
+
   }
   else
   {
