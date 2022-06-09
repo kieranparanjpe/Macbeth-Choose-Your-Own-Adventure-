@@ -83,7 +83,7 @@ d.add(
 
     }
     
-    dialogue = new Dialogue[lines.length];
+    dialogue = new Dialogue[d.size()];
 
     for(int i = 0; i < d.size(); i++)
     {
