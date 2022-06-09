@@ -120,7 +120,7 @@ public void draw()
   {
     if (DisplayText(currentBranch.dialogue[currentDialogue].text))
     {
-      if (millis() - millis > 1000)
+      if (millis() - millis > 2500)
       {
                   currentDialogue++; 
 

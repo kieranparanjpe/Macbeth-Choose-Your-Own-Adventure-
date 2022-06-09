@@ -30,7 +30,7 @@
 
 (macbeth): Ay, and a bold one, that dare look on that which might appall the devil. Avaunt, and quit my sight! Let the earth hide thee. Thy bones are marrowless, thy blood is cold. Thou hast no speculation in those eyes which thou dost glare with!
 
-(narrator): concerned and uneasy about the king’s insanity and hallucinations, the guests return to their suites for the night.
+(narrator): Concerned and uneasy about the king’s insanity and hallucinations, the guests return to their suites for the night.
 
 (macbeth): How say’st thou that Macduff denies his person at our great bidding?
 

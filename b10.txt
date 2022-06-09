@@ -1,4 +1,5 @@
 (narrator): Banquo goes for a ride before the royal feast with his son Fleance. Banquo promises he will be back in time for the dinner as to not upset the guests. The murderers enter.
+
 (Macbeth): Know that it was he, in times past, which held you so under fortune, which you thought had been our innocent self. Can you let this go? Both of you know Banquo was your enemy.
 
 (murderers): True, my lord. We are resolved, my lord.
@@ -16,7 +17,7 @@
 
 (murderers): My lord, his throat is cut. That I did for him. Howe'er Fleance is ‘scaped.
 
-(Macbeth): Then comes my fit again. I had else been perfect, whole as the marble, founded as the rock, as broad and general as the casing air. 25 but now I am cabined, cribbed, confined, bound in to saucy doubts and fears. — But Banquo’s safe?
+(Macbeth): Then comes my fit again. I had else been perfect, whole as the marble, founded as the rock, as broad and general as the casing air. But now I am cabined, cribbed, confined, bound in to saucy doubts and fears. — But Banquo’s safe?
 
 (murderers): Ay, my good lord. Safe in a ditch he lies.
 
@@ -32,7 +33,7 @@
 
 (macbeth): Ay, and a bold one, that dare look on that which might appall the devil. Avaunt, and quit my sight! Let the earth hide thee. Thy bones are marrowless, thy blood is cold. Thou hast no speculation in those eyes which thou dost glare with!
 
-(narrator): concerned and uneasy about the king’s insanity and hallucinations, the guests return to their suites for the night.
+(narrator): Concerned and uneasy about the king’s insanity and hallucinations, the guests return to their suites for the night.
 
 (macbeth): How say’st thou that Macduff denies his person at our great bidding?
 
@@ -46,7 +47,7 @@
 
 (First Apparition): Macbeth! Macbeth! Macbeth! Beware Macduff. Beware the thane of Fife. Dismiss me. Enough. 
 
-(Second Apparition): Be bloody, bold, and resolute. Laugh to scorn the power of man, for none of woman born Shall harm Macbeth.
+(Second Apparition): Be bloody, bold, and resolute. Laugh to scorn the power of man, for none of woman born shall harm Macbeth.
 
 (Third Apparition): Be lion-mettled, proud, and take no care who chafes, who frets, or where conspirers are. Macbeth shall never vanquished be until Great Birnam wood to high Dunsinane hill shall come against him.
 
