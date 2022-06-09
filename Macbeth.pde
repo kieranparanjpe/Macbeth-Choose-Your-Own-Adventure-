@@ -47,7 +47,7 @@ public void setup()
   size(1280, 720);
   rectMode(CENTER);
   textAlign(LEFT);
-  currentBranch = b10;
+  currentBranch = b0;
   InitD(b0);
 }
 
