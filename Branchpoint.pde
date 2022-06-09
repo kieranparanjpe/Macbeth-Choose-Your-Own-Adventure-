@@ -56,6 +56,7 @@ public class Branchpoint
       
     String[] lines = loadStrings(fileName);
     dialogue = new Dialogue[lines.length];
+    ArrayList<Dialogue> d = new ArrayList<Dialogue>();
     for(int i = 0; i < lines.length; i++)
     {
       if(lines[i].equals(""))
@@ -64,7 +65,8 @@ public class Branchpoint
       {
         String[] c = lines[i].split("/");
 
-        dialogue[i] = new Dialogue(new Char(c[0]), c[1]);
+d.add(
+        dialogue[i] = new Dialogue(new Char(c[0]), c[1]));
       }
       else
       {
@@ -75,11 +77,19 @@ public class Branchpoint
         
         n = n.substring(2, n.length() - 1);
         n = f + n;
-
-        dialogue[i] = new Dialogue(new Char(n), c[1].substring(1, c[1].length()));
+d.add(
+        dialogue[i] = new Dialogue(new Char(n), c[1].substring(1, c[1].length())));
       }
 
     }
+    
+    dialogue = new Dialogue[lines.length];
+
+    for(int i = 0; i < d.size(); i++)
+    {
+      dialogue[i] = d.get(i);
+    }
+ 
   }
 }
 

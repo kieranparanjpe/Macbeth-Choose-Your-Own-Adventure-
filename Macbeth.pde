@@ -118,6 +118,7 @@ public void draw()
   }
   else
   {
+    println(currentDialogue + " " + currentBranch.dialogue.length);
     if (DisplayText(currentBranch.dialogue[currentDialogue].text))
     {
       if (millis() - millis > 2500)
