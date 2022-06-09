@@ -42,6 +42,10 @@ private int millis;
 
 private ArrayList<Button> buttons = new ArrayList<Button>();
 
+public int mode = 0;
+
+Button start = new Button(new PVector(1280/2, 600), new PVector(400, 200), 255, 180, "Play");
+
 public void setup()
 {
   size(1280, 720);
@@ -54,98 +58,126 @@ public void setup()
 private void InitD(Branchpoint current)
 {
 
- current.Init();
- if(current.death != null)
-   InitD(current.death);
- 
- for(Branchpoint b : current.next)
- {
-  InitD(b); 
- }
+  current.Init();
+  if (current.death != null)
+    InitD(current.death);
+
+  for (Branchpoint b : current.next)
+  {
+    InitD(b);
+  }
 }
 
 public void draw()
 {
   background(0);
-
-  textSize(20);
-  fill(255);
   
-  for(int i = 0; i < buttons.size(); i++)
+  if(mode == 0)
   {
-     buttons.get(i).Draw();
-     if(buttons.get(i).clicked)
-     {
-       int pc = currentBranch.next[i].percentChance;
-       if(pc != 0)
-       {
-         float r = random(0, 100);
-         if(r <= pc)
-         {
-            currentBranch = currentBranch.next[i];
-         }
-         else
-         {
-             currentBranch = currentBranch.next[i].death;
-             println("sofhs");
-         }
-       }
-       else
-       {
-           currentBranch = currentBranch.next[i];
-       }
-      
-       buttons = new ArrayList<Button>();
-       currentDialogue = 0;
-       currentText = "";
-     }
+    textAlign(CENTER);
+    
+    textSize(50);
+    fill(255);
+    
+    text("The Tragedy of: ", width/2, 200);
+    
+    textSize(110);
+    fill(255);
+    
+    text("MACBETH", width/2, 400);
+    
+    start.Draw();
+    
+    if(start.clicked)
+      mode = 1;
   }
-
-
-  if (currentDialogue >= currentBranch.dialogue.length)
-  {
-    textAlign(LEFT);
-
-  fill(255);
-    textSize(40);
-
-   text(currentBranch.dialogue[currentDialogue - 1].character.name + ":", width/2, height/2 , 800, 500);
-
-  textSize(20);
   
-      text(currentBranch.dialogue[currentDialogue - 1].text, width/2, height/2 + 75, 800, 500);
 
-  }
-  else
+  if (mode == 1)
   {
-    println(currentDialogue + " " + currentBranch.dialogue.length);
-    if (DisplayText(currentBranch.dialogue[currentDialogue].text))
+
+    textSize(20);
+    fill(255);
+
+    for (int i = 0; i < buttons.size(); i++)
     {
-      if (millis() - millis > 2500)
+      buttons.get(i).Draw();
+      if (buttons.get(i).clicked)
       {
-                  currentDialogue++; 
-
-        if(currentDialogue >= currentBranch.dialogue.length)
+        int pc = currentBranch.next[i].percentChance;
+        if (pc != 0)
         {
-          int[] pos = new int[currentBranch.next.length];
-          if(pos.length == 2){
-            pos[0] = width/2 - 300;
-            pos[1] = width/2 + 300;
-          }
-          else if(pos.length == 3)
+          float r = random(0, 100);
+          if (r <= pc)
           {
-            pos[0] = width/2 - 450;
-            pos[1] = width/2;
-            pos[2] = width/2 + 450;
-          }
-          for(int i = 0; i < currentBranch.next.length; i++)
+            currentBranch = currentBranch.next[i];
+          } else
           {
-             buttons.add(new Button(new PVector(pos[i], height * 0.75), new PVector(300, 200), 255, 200, currentBranch.next[i].name + (currentBranch.next[i].percentChance == 0 ? "" : " (" + currentBranch.next[i].percentChance + "%)")));
+            currentBranch = currentBranch.next[i].death;
+            println("sofhs");
           }
+        } else
+        {
+          currentBranch = currentBranch.next[i];
         }
-        else
+
+        buttons = new ArrayList<Button>();
+        currentDialogue = 0;
+        currentText = "";
+      }
+    }
+
+
+    if (currentDialogue >= currentBranch.dialogue.length)
+    {
+      textAlign(LEFT);
+
+      fill(255);
+      textSize(40);
+
+      text(currentBranch.dialogue[currentDialogue - 1].character.name + ":", width/2, height/2, 800, 500);
+
+      textSize(20);
+
+      text(currentBranch.dialogue[currentDialogue - 1].text, width/2, height/2 + 75, 800, 500);
+    } else
+    {
+      println(currentDialogue + " " + currentBranch.dialogue.length);
+      if (DisplayText(currentBranch.dialogue[currentDialogue].text))
+      {
+        if (millis() - millis > 2500)
         {
-          currentText = "";
+          currentDialogue++; 
+
+          if (currentDialogue >= currentBranch.dialogue.length)
+          {
+            int[] pos = new int[currentBranch.next.length];
+            if (pos.length == 2) {
+              pos[0] = width/2 - 300;
+              pos[1] = width/2 + 300;
+            } else if (pos.length == 3)
+            {
+              pos[0] = width/2 - 450;
+              pos[1] = width/2;
+              pos[2] = width/2 + 450;
+            }
+            for (int i = 0; i < currentBranch.next.length; i++)
+            {
+              buttons.add(new Button(new PVector(pos[i], height * 0.75), new PVector(300, 200), 255, 200, currentBranch.next[i].name + (currentBranch.next[i].percentChance == 0 ? "" : " (" + currentBranch.next[i].percentChance + "%)")));
+            }
+            if(currentBranch.next.length == 0)
+            {
+              mode = 0;
+              currentBranch = b0;
+              currentText = "";
+              currentDialogue = 0;
+              millis = 0;
+              start.clicked = false;
+            }
+          } else
+          {
+            currentText = "";
+          }
         }
       }
     }
@@ -154,16 +186,16 @@ public void draw()
 
 public Boolean DisplayText(String text)
 {
-    textAlign(LEFT);
+  textAlign(LEFT);
 
   fill(255);
-    textSize(40);
+  textSize(40);
 
-   text(currentBranch.dialogue[currentDialogue].character.name + ":", width/2, height/2 , 800, 500);
+  text(currentBranch.dialogue[currentDialogue].character.name + ":", width/2, height/2, 800, 500);
 
   textSize(20);
 
-  
+
   if (text.equals(currentText))
   {
     text(currentText, width/2, height/2 + 75, 800, 500);
