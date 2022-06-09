@@ -58,9 +58,27 @@ public class Branchpoint
     dialogue = new Dialogue[lines.length];
     for(int i = 0; i < lines.length; i++)
     {
-      String[] c = lines[i].split("/");
-      
-      dialogue[i] = new Dialogue(new Char(c[0]), c[1]);
+      if(lines[i].equals(""))
+        continue;
+      if(lines[i].contains("/"))
+      {
+        String[] c = lines[i].split("/");
+
+        dialogue[i] = new Dialogue(new Char(c[0]), c[1]);
+      }
+      else
+      {
+        String[] c = lines[i].split(":", 2);
+        
+        String n = c[0];
+        String f = n.substring(1, 2).toUpperCase();
+        
+        n = n.substring(2, n.length() - 1);
+        n = f + n;
+
+        dialogue[i] = new Dialogue(new Char(n), c[1].substring(1, c[1].length()));
+      }
+
     }
   }
 }
