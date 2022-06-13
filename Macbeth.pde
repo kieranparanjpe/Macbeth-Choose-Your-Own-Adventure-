@@ -12,11 +12,11 @@ public final Dialogue b1d1 = new Dialogue(narrator, "b1d1.txt", true);
 /*Branchpoints*/
 
 //public final Branchpoint b10 = new Branchpoint("Kill Witches", new Dialogue[] {a1b1d2});
-public final Branchpoint b26 = new Branchpoint("Uncle", "b23.txt");
-public final Branchpoint b25 = new Branchpoint("Brother", "b23.txt");
-public final Branchpoint b24 = new Branchpoint("Cousin", "b22.txt");
-public final Branchpoint b23 = new Branchpoint("Macbeth should fear Macduff", "b23.txt");
-public final Branchpoint b22 = new Branchpoint("No one born of a woman will harm him", "b22.txt");
+public final Branchpoint b26 = new Branchpoint("Uncle", "b22.txt");
+public final Branchpoint b25 = new Branchpoint("Brother", "b22.txt");
+public final Branchpoint b24 = new Branchpoint("Cousin", "b23.txt");
+public final Branchpoint b23 = new Branchpoint("Macbeth should fear Macduff", "b22.txt");
+public final Branchpoint b22 = new Branchpoint("No one born of a woman will harm him", "b23.txt");
 public final Branchpoint b20 = new Branchpoint("Kill Macduff's Family", "b20.txt", new Branchpoint[] {b24, b25, b26});
 public final Branchpoint b19 = new Branchpoint("Don't Kill Macduff's Family", "b19.txt", new Branchpoint[] {b22, b23});
 public final Branchpoint b32 = new Branchpoint("Fail Banquo", "b32.txt");
@@ -203,7 +203,7 @@ public Boolean DisplayText(String text)
   }
 
 
-  if (millis() - millis < 1)
+  if (millis() - millis < 3)
   {
     text(currentText, width/2, height/2 + 75, 800, 500);
     return false;
