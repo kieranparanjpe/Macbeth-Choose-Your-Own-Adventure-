@@ -1,4 +1,6 @@
 
+public int x;
+
 /*Characters*/
 public Char narrator = new Char("Narrator");
 public final Char macbeth = new Char("Macbeth");
